@@ -9,16 +9,16 @@ data = {
     'gdp': [20343000000, 12960000000, 188681000000, 3712000000, 100990000000]
 }
 
+
 def big_countries(world: pd.DataFrame) -> pd.DataFrame:
     return world[
         (world['area'] >= 3_000_000) | \
         (world['population'] >= 25_000_000)
-    ][['name', 'population', 'area']]
+        ][['name', 'population', 'area']]
+
 
 # Filter big countries
 world_df = big_countries(pd.DataFrame(data))
-
-
 
 # Print the output
 print(world_df)
