@@ -58,4 +58,27 @@ import pandas as pd
 
 
 def valid_emails(users: pd.DataFrame) -> pd.DataFrame:
-    return users
+    # Define a regular expression pattern to match valid email addresses
+    pattern = r'^[a-zA-Z][a-zA-Z0-9._-]*@leetcode\.com$'
+
+    # Use str.contains with regex pattern to filter valid email addresses
+    valid_users = users[users['mail'].str.contains(pattern, regex=True)]
+
+    return valid_users
+
+
+# Sample data
+users_data = {
+    'user_id': [1, 2, 3, 4, 5, 6, 7],
+    'name': ['Winston', 'Jonathan', 'Annabelle', 'Sally', 'Marwan', 'David', 'Shapiro'],
+    'mail': ['winston@leetcode.com', 'jonathanisgreat', 'bella-@leetcode.com', 'sally.come@leetcode.com', 'quarz#2020@leetcode.com', 'david69@gmail.com', '.shapo@leetcode.com']
+}
+
+# Create DataFrame
+users_df = pd.DataFrame(users_data)
+
+# Filter valid emails
+valid_users_df = valid_emails(users_df)
+
+# Print the result
+print(valid_users_df)

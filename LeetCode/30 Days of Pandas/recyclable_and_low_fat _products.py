@@ -54,11 +54,12 @@ data = {
 
 df = pd.DataFrame(data)
 
+
 # Filter the DataFrame to get the product_ids that are both low fat and recyclable
 def find_products(products: pd.DataFrame) -> pd.DataFrame:
     return products[(products['low_fats'] == 'Y') &
-     (products['recyclable'] == 'Y')][['product_id']]
-     
+                    (products['recyclable'] == 'Y')][['product_id']]
+
 
 # Print the result
 print(find_products(df))
