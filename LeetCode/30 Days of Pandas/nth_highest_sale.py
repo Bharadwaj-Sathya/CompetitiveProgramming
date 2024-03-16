@@ -12,7 +12,8 @@
 # Each row of this table contains information about the salary of an employee.
 
 
-# Write a solution to find the nth highest salary from the Employee table. If there is no nth highest salary, return null.
+# Write a solution to find the nth highest salary from the Employee table. If there is no nth highest salary,
+# return null.
 
 # The result format is in the following example.
 
@@ -55,13 +56,14 @@
 
 import pandas as pd
 
+
 def nth_highest_salary(employee: pd.DataFrame, N: int) -> pd.DataFrame:
     # Sort the dataframe by the 'salary' column in descending order
     sorted_df = employee.sort_values(by='salary', ascending=False)
-    
+
     # Reset the index after sorting
     sorted_df.reset_index(drop=True, inplace=True)
-    
+
     # Check if there are at least N unique salaries
     if N <= len(sorted_df):
         # Select the Nth highest salary using iloc
@@ -70,7 +72,6 @@ def nth_highest_salary(employee: pd.DataFrame, N: int) -> pd.DataFrame:
     else:
         # If there are fewer than N unique salaries, return null
         return pd.DataFrame({f'getNthHighestSalary({N})': [None]})
-    
 
 
 employee = pd.DataFrame({
