@@ -11,7 +11,7 @@
 # +-------------+------+
 # (subject_id, dept_id) is the primary key (combinations of columns with unique values) of this table.
 # Each row in this table indicates that the teacher with teacher_id teaches the subject subject_id in the department dept_id.
- 
+
 
 # Write a solution to calculate the number of unique subjects each teacher teaches in the university.
 
@@ -19,11 +19,10 @@
 
 # The result format is shown in the following example.
 
- 
 
 # Example 1:
 
-# Input: 
+# Input:
 # Teacher table:
 # +------------+------------+---------+
 # | teacher_id | subject_id | dept_id |
@@ -36,14 +35,14 @@
 # | 2          | 3          | 1       |
 # | 2          | 4          | 1       |
 # +------------+------------+---------+
-# Output:  
+# Output:
 # +------------+-----+
 # | teacher_id | cnt |
 # +------------+-----+
 # | 1          | 2   |
 # | 2          | 4   |
 # +------------+-----+
-# Explanation: 
+# Explanation:
 # Teacher 1:
 #   - They teach subject 2 in departments 3 and 4.
 #   - They teach subject 3 in department 3.
@@ -56,11 +55,14 @@
 
 import pandas as pd
 
+
 def count_unique_subjects(teacher: pd.DataFrame) -> pd.DataFrame:
     # Group by teacher_id and count unique subject_ids
-    result = teacher.groupby('teacher_id')['subject_id'].nunique().reset_index()
+    result = teacher.groupby('teacher_id')[
+        'subject_id'].nunique().reset_index()
     result.columns = ['teacher_id', 'cnt']
     return result
+
 
 # Example usage:
 teacher_data = pd.DataFrame({
